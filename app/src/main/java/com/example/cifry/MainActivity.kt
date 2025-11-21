@@ -73,20 +73,15 @@ class MainActivity : ComponentActivity() {
         setContent {
             CifryTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    // Estado para saber si mostramos "Léeme" (true) o "Principal" (false)
                     var showReadMe by androidx.compose.runtime.remember { mutableStateOf(false) }
 
                     if (showReadMe) {
-                        // Si es true, mostramos la nueva pantalla
-                        // Pasamos la función para que el botón "Volver" ponga el estado en false
                         androidx.compose.foundation.layout.Box(
                             modifier = Modifier.padding(innerPadding)
                         ) {
                             ReadMeScreen(onBack = { showReadMe = false })
                         }
                     } else {
-                        // Si es false, mostramos la pantalla de Cifrado
-                        // Pasamos la función para navegar a Léeme (poner estado en true)
                         EncryptionScreen(
                             modifier = Modifier.padding(innerPadding),
                             onNavigateToReadMe = { showReadMe = true }
